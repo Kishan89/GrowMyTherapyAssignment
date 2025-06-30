@@ -26,7 +26,7 @@ const services = [
 export default function Services() {
   return (
     <section className="bg-[#f6f3eb]" id="services">
-      {/* Hero Section */}
+      {/* Hero Text */}
       <FadeInSection delay={0.1}>
         <div className="max-w-6xl mx-auto text-center px-4 sm:px-6 md:px-8 pt-12">
           <h1 className="text-[36px] leading-snug font-lora font-light text-[#383838] mb-10">
@@ -62,7 +62,6 @@ export default function Services() {
               </h2>
             </FadeInSection>
 
-            {/* Cards with staggered fade-ins */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 lg:gap-x-8 gap-y-12">
               {services.map((service, index) => (
                 <FadeInSection key={service.title} delay={0.4 + index * 0.1}>
@@ -91,66 +90,89 @@ export default function Services() {
       {/* Rates and Insurance */}
       <FadeInSection delay={0.4}>
         <div className="bg-[#89a8a9] text-[#1a1a1a] font-lora text-center px-4 sm:px-6 py-20 mt-32">
-          <h2 className="text-[36px] font-lora font-light mb-10">
-            Rates and Insurance
-          </h2>
+          <FadeInSection delay={0.45}>
+            <h2 className="text-[36px] font-lora font-light mb-10">
+              Rates and Insurance
+            </h2>
+          </FadeInSection>
           <div className="text-[17px] font-light leading-relaxed space-y-6 max-w-3xl mx-auto px-2">
-            <p>$200 / individual session</p>
-            <p>$240 / couples session</p>
-            <p>
-              I accept both private pay and insurance. I am in-network with BCBS
-              and Aetna.
-            </p>
-            <p>
-              For out-of-network plans, I’ve partnered with Mentaya using{" "}
-              <a
-                href="https://www.mentaya.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline"
-              >
-                this tool
-              </a>{" "}
-              to help you check your eligibility for reimbursement for my
-              services.
-            </p>
+            <FadeInSection delay={0.5}>
+              <p>$200 / individual session</p>
+            </FadeInSection>
+            <FadeInSection delay={0.55}>
+              <p>$240 / couples session</p>
+            </FadeInSection>
+            <FadeInSection delay={0.6}>
+              <p>
+                I accept both private pay and insurance. I am in-network with
+                BCBS and Aetna.
+              </p>
+            </FadeInSection>
+            <FadeInSection delay={0.65}>
+              <p>
+                For out-of-network plans, I’ve partnered with Mentaya using{" "}
+                <a
+                  href="https://www.mentaya.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline"
+                >
+                  this tool
+                </a>{" "}
+                to help you check your eligibility for reimbursement for my
+                services.
+              </p>
+            </FadeInSection>
           </div>
         </div>
       </FadeInSection>
 
       {/* Office Hours */}
-      <FadeInSection delay={0.5}>
+      <FadeInSection delay={0.7}>
         <div className="bg-white text-center py-16 px-4 sm:px-6">
-          <h2 className="text-[28px] font-lora font-light text-[#383838] mb-6">
-            Office Hours
-          </h2>
-          <p className="text-[15.5px] text-[#6b6b6b] font-light mb-2">
-            In-person: Tue & Thu, 10 AM–6 PM
-          </p>
-          <p className="text-[15.5px] text-[#6b6b6b] font-light">
-            Virtual via Zoom: Mon, Wed & Fri, 1 PM–5 PM
-          </p>
+          <FadeInSection delay={0.75}>
+            <h2 className="text-[28px] font-lora font-light text-[#383838] mb-6">
+              Office Hours
+            </h2>
+          </FadeInSection>
+          <FadeInSection delay={0.8}>
+            <p className="text-[15.5px] text-[#6b6b6b] font-light mb-2">
+              In-person: Tue & Thu, 10 AM–6 PM
+            </p>
+          </FadeInSection>
+          <FadeInSection delay={0.85}>
+            <p className="text-[15.5px] text-[#6b6b6b] font-light">
+              Virtual via Zoom: Mon, Wed & Fri, 1 PM–5 PM
+            </p>
+          </FadeInSection>
         </div>
       </FadeInSection>
 
       {/* Quote Section */}
-      <FadeInSection delay={0.6}>
+      <FadeInSection delay={0.9}>
         <div
-          className="relative w-full bg-cover bg-center text-center px-4 sm:px-6 min-h-[520px] flex items-center"
+          className="relative w-full bg-cover bg-center min-h-[520px] px-4 sm:px-6 flex items-center justify-center text-center"
           style={{ backgroundImage: `url("/image/bg.png")` }}
         >
+          {/* Background overlay */}
           <div className="absolute inset-0 bg-white opacity-30" />
-          <div className="relative z-10 max-w-4xl mx-auto px-2">
-            <p className="text-[22px] md:text-[28px] leading-relaxed font-lora font-light text-[#444]">
-              “I have come to believe that caring for myself is not
-              self-indulgent.
-              <br />
-              Caring for myself is an act of survival.”
-            </p>
-            <p className="text-[16px] text-black mt-6 font-light">
-              — Audre Lorde
-            </p>
-          </div>
+
+          {/* Quote Content */}
+          <FadeInSection delay={1.0}>
+            <div className="relative z-10 max-w-4xl px-2 text-center">
+              <p className="text-[22px] md:text-[28px] leading-relaxed font-lora font-light text-[#444]">
+                “I have come to believe that caring for myself is not
+                self-indulgent.
+                <br />
+                Caring for myself is an act of survival.”
+              </p>
+              <FadeInSection delay={1.1}>
+                <p className="text-[16px] text-black mt-6 font-light">
+                  — Audre Lorde
+                </p>
+              </FadeInSection>
+            </div>
+          </FadeInSection>
         </div>
       </FadeInSection>
     </section>
