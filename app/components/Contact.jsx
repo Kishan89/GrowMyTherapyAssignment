@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
+
+const SITE_KEY = "YOUR_SITE_KEY_HERE"; // Replace this with your actual reCAPTCHA site key
 
 export default function ContactForm() {
   const [form, setForm] = useState({
@@ -12,6 +15,7 @@ export default function ContactForm() {
     agree: false,
   });
 
+  const [captchaVerified, setCaptchaVerified] = useState(false);
   const [errors, setErrors] = useState({});
 
   const validate = () => {
@@ -20,9 +24,11 @@ export default function ContactForm() {
     if (!form.phone) newErrors.phone = "Phone is required";
     if (!form.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
       newErrors.email = "Valid email is required";
-    if (!form.message) newErrors.message = "This field is required";
+    if (!form.message) newErrors.message = "Message is required";
     if (!form.time) newErrors.time = "Preferred time is required";
-    if (!form.agree) newErrors.agree = "You must agree to be contacted";
+    if (!form.agree) newErrors.agree = "Consent is required";
+    if (!captchaVerified)
+      newErrors.captcha = "Please verify you're not a robot";
     return newErrors;
   };
 
@@ -40,6 +46,7 @@ export default function ContactForm() {
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length === 0) {
       alert("Form submitted successfully");
+      // Handle form submission logic here
     }
   };
 
@@ -54,8 +61,7 @@ export default function ContactForm() {
             Get In Touch
           </h2>
           <p className="text-center text-[#1d3c2f] text-[17px] leading-relaxed mb-8">
-            Simply fill out the brief fields below and I’ll be in touch with you
-            soon. This form is safe, private, and completely free.
+            Fill out the form and I’ll get back to you shortly.
           </p>
 
           {[
@@ -90,9 +96,7 @@ export default function ContactForm() {
           ))}
 
           <div className="mb-6">
-            <label className="block text-[#1d3c2f] mb-1">
-              What brings you here?
-            </label>
+            <label className="block text-[#1d3c2f] mb-1">Message</label>
             <textarea
               name="message"
               value={form.message}
@@ -107,7 +111,7 @@ export default function ContactForm() {
 
           <div className="mb-6">
             <label className="block text-[#1d3c2f] mb-1">
-              Preferred time to reach you
+              Preferred Contact Time
             </label>
             <input
               name="time"
@@ -137,18 +141,33 @@ export default function ContactForm() {
             <p className="text-red-500 text-sm mb-4">{errors.agree}</p>
           )}
 
+          <div className="mb-6">
+            <ReCAPTCHA
+              sitekey="6LcwEnMrAAAAAOwFGJVHd49Qf7N-czaZys1zRe6_"
+              onChange={() => setCaptchaVerified(true)}
+            />
+            {errors.captcha && (
+              <p className="text-red-500 text-sm mt-2">{errors.captcha}</p>
+            )}
+          </div>
+
           <button
             type="submit"
             className="bg-[#1d3c2f] text-white px-6 py-3 rounded-md w-full hover:bg-[#173024] transition"
           >
             Submit
           </button>
+
+          <p className="text-[13px] text-center text-[#333] mt-6">
+            © By clicking submit you consent to receive texts and emails.
+          </p>
         </form>
       </section>
 
-      <footer className="bg-[#f6f3eb] text-center text-[#1e1e1e] font-lora py-14 px-6">
-        <div className="max-w-3xl mx-auto space-y-5 text-[16px] leading-relaxed">
-          <h2 className="text-[22px] md:text-[24px] font-light">
+      {/* Footer */}
+      <footer className="bg-[#f6f3eb] text-center text-[#1e1e1e] font-lora py-14 px-4 sm:px-6">
+        <div className="max-w-3xl mx-auto space-y-5 text-[15px] sm:text-[16px] leading-relaxed">
+          <h2 className="text-[20px] sm:text-[22px] md:text-[24px] font-light">
             Dr. Serena Blake, PsyD, Clinical Psychologist
           </h2>
           <p>
@@ -164,7 +183,7 @@ export default function ContactForm() {
           </p>
           <p>1287 Maplewood Drive, Los Angeles, CA 90026</p>
 
-          <div className="flex justify-center gap-6 text-[15px] mt-6">
+          <div className="flex flex-wrap justify-center gap-6 text-[14px] sm:text-[15px] mt-6">
             <a href="/" className="underline">
               Home
             </a>
@@ -179,13 +198,13 @@ export default function ContactForm() {
           <div className="mt-10 pt-4 border-t border-[#ddd]">
             <a
               href="/client-portal"
-              className="underline inline-block text-[17px]"
+              className="underline inline-block text-[16px]"
             >
               Client Portal
             </a>
           </div>
 
-          <p className="mt-10 text-[15px]">
+          <p className="mt-10 text-[14px]">
             © 2025 Dr. Serena Blake, PsyD. All rights reserved.
           </p>
         </div>

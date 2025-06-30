@@ -26,13 +26,13 @@ export default function FAQ() {
   };
 
   return (
-    <section className="bg-white py-24 px-6 font-lora text-[#184061]">
+    <section className="bg-white py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 font-lora text-[#184061]">
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-4xl md:text-5xl text-center mb-14">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl text-center mb-10 sm:mb-12 md:mb-14">
           Frequently Asked Questions
         </h2>
 
-        <h3 className="text-2xl mb-10">Therapy</h3>
+        <h3 className="text-xl sm:text-2xl mb-6 sm:mb-10">Therapy</h3>
 
         <ul className="space-y-5">
           {faqs.map((faq, index) => (
@@ -41,7 +41,7 @@ export default function FAQ() {
                 onClick={() => toggle(index)}
                 className="w-full flex items-start justify-between text-left"
               >
-                <span className="flex items-center gap-3 text-[18px] font-normal">
+                <span className="flex items-center gap-3 text-[17px] sm:text-[18px] font-normal">
                   <span
                     className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
                       openIndex === index
@@ -61,7 +61,7 @@ export default function FAQ() {
               </button>
 
               {openIndex === index && (
-                <p className="pl-11 mt-4 text-[#444] text-[17px] font-light leading-relaxed">
+                <p className="pl-11 mt-3 text-[#444] text-[16px] sm:text-[17px] font-light leading-relaxed">
                   {faq.answer}
                 </p>
               )}
