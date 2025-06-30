@@ -1,5 +1,7 @@
 "use client";
 
+import FadeInSection from "./FadeInSection";
+
 export default function About() {
   return (
     <>
@@ -7,31 +9,42 @@ export default function About() {
         <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-start gap-8">
           {/* Left - Text */}
           <div className="md:w-1/2 w-full text-left">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-500">
-              About Dr. Serena Blake
-            </h2>
-            <p className="text-[17px] leading-[1.9rem] mb-6">
-              Dr. Serena Blake is a licensed clinical psychologist (PsyD) based
-              in Los Angeles, CA, with eight years of experience and over 500
-              client sessions. She blends evidence-based approaches—like
-              cognitive-behavioral therapy and mindfulness—with compassionate,
-              personalized care.
-            </p>
-            <p className="text-[17px] leading-[1.9rem] mb-6">
-              Dr. Blake specializes in helping individuals overcome anxiety,
-              strengthen relationships, and heal from trauma. Her approach
-              centers on building a safe, supportive space where clients can
-              explore their challenges and discover lasting growth.
-            </p>
-            <p className="text-[17px] leading-[1.9rem]">
-              Whether you meet her in-person at her Maplewood Drive office or
-              connect virtually via Zoom, Dr. Blake is dedicated to providing
-              thoughtful, tailored guidance to help you thrive—mentally,
-              emotionally, and relationally.
-            </p>
+            <FadeInSection delay={0.2}>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-500">
+                About Dr. Serena Blake
+              </h2>
+            </FadeInSection>
+
+            <FadeInSection delay={0.3}>
+              <p className="text-[17px] leading-[1.9rem] mb-6">
+                Dr. Serena Blake is a licensed clinical psychologist (PsyD)
+                based in Los Angeles, CA, with eight years of experience and
+                over 500 client sessions. She blends evidence-based
+                approaches—like cognitive-behavioral therapy and
+                mindfulness—with compassionate, personalized care.
+              </p>
+            </FadeInSection>
+
+            <FadeInSection delay={0.4}>
+              <p className="text-[17px] leading-[1.9rem] mb-6">
+                Dr. Blake specializes in helping individuals overcome anxiety,
+                strengthen relationships, and heal from trauma. Her approach
+                centers on building a safe, supportive space where clients can
+                explore their challenges and discover lasting growth.
+              </p>
+            </FadeInSection>
+
+            <FadeInSection delay={0.5}>
+              <p className="text-[17px] leading-[1.9rem]">
+                Whether you meet her in-person at her Maplewood Drive office or
+                connect virtually via Zoom, Dr. Blake is dedicated to providing
+                thoughtful, tailored guidance to help you thrive—mentally,
+                emotionally, and relationally.
+              </p>
+            </FadeInSection>
           </div>
 
-          {/* Right - Image */}
+          {/* Right - Image (no animation applied here) */}
           <div className="md:w-1/2 w-full flex justify-center md:justify-end">
             <img
               src="/image/sarena.jpg"
@@ -43,7 +56,9 @@ export default function About() {
       </section>
 
       {/* Line below the section */}
-      <div className="mt-16 h-[2px] bg-[#5c3a1e] mx-6 sm:mx-12 md:mx-20" />
+      <FadeInSection delay={0.6}>
+        <div className="mt-16 h-[2.5px] bg-[#5c3a1e] mx-6 sm:mx-12 md:mx-20" />
+      </FadeInSection>
     </>
   );
 }
