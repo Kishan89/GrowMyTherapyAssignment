@@ -20,7 +20,11 @@ export default function ContactForm() {
   const validate = () => {
     const newErrors = {};
     if (!form.name) newErrors.name = "Name is required";
-    if (!form.phone) newErrors.phone = "Phone is required";
+    if (!form.phone || !/^\+91[6-9]\d{9}$/.test(form.phone.trim())) {
+      newErrors.phone =
+        "Valid Indian phone number required (e.g., +919876543210)";
+    }
+
     if (!form.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
       newErrors.email = "Valid email is required";
     if (!form.message) newErrors.message = "Message is required";
@@ -43,8 +47,12 @@ export default function ContactForm() {
     setErrors((prevErrors) => {
       const updatedErrors = { ...prevErrors };
       switch (name) {
-        case "name":
         case "phone":
+          if (/^\+91[6-9]\d{9}$/.test(updatedValue.trim())) {
+            delete updatedErrors.phone;
+          }
+          break;
+        case "name":
         case "message":
         case "time":
           if (updatedValue.trim() !== "") delete updatedErrors[name];
@@ -114,9 +122,11 @@ export default function ContactForm() {
               label: "Phone",
               name: "phone",
               type: "tel",
-              placeholder: "(555) 234–5678",
+              placeholder: "+919876543210",
+              inputMode: "tel",
+              pattern: "\\+91[6-9]\\d{9}",
             },
-          ].map(({ label, name, type, placeholder }) => (
+          ].map(({ label, name, type, placeholder, inputMode, pattern }) => (
             <div key={name} className="mb-6">
               <label className="block text-[#1d3c2f] mb-1">{label}</label>
               <input
@@ -125,6 +135,8 @@ export default function ContactForm() {
                 value={form[name]}
                 onChange={handleChange}
                 placeholder={placeholder}
+                inputMode={inputMode}
+                pattern={pattern}
                 className={`w-full border px-4 py-2 rounded-md outline-none ${
                   errors[name] ? "border-red-500" : "border-[#1d3c2f]"
                 }`}
@@ -220,9 +232,10 @@ export default function ContactForm() {
           </p>
         </form>
       </FadeInSection>
+
       <div className="mt-10 pt-4 border-t-[2px] border-[#ddd]"></div>
 
-      {/* Footer directly follows form */}
+      {/* Footer */}
       <FadeInSection delay={0.2}>
         <footer className="mt-12 bg-[#f4f6f7] text-center text-[#1e1e1e] font-lora pt-12">
           <div className="max-w-3xl mx-auto space-y-5 text-[15px] sm:text-[16px] leading-relaxed">
