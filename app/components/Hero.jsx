@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <FadeInSection>
       <section className="relative bg-[#f5f3ec] min-h-screen font-serif px-4 sm:px-6 md:px-12 pb-20">
-        {/* Logo Header */}
+        {/* Header with Logo */}
         <header className="w-full max-w-[1400px] mx-auto pt-6 pb-4">
           <div>
             <img
@@ -17,7 +17,7 @@ export default function Hero() {
           </div>
         </header>
 
-        {/* Video Background */}
+        {/* Hero Video Background */}
         <div className="relative max-w-[1400px] mx-auto h-[calc(100vh-90px)] overflow-hidden rounded-none">
           <video
             className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
@@ -30,7 +30,7 @@ export default function Hero() {
             Your browser does not support the video tag.
           </video>
 
-          {/* Hero Text Content */}
+          {/* Hero Text Overlay */}
           <div className="relative z-10 flex flex-col items-center justify-center text-center h-full text-white px-4 sm:px-6">
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight mb-4 drop-shadow-md">
               Professional Psychological Care
@@ -43,6 +43,7 @@ export default function Hero() {
               — all from the comfort of your home.
             </p>
 
+            {/* CTA Button */}
             <a
               href="#contact"
               className="bg-[#5a7f8a] text-white text-xs sm:text-sm md:text-base font-semibold inline-flex items-center justify-center transition duration-300 hover:opacity-75"

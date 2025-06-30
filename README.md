@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Dr. Serena Blake – Therapy Website
 
-## Getting Started
+Live URL: [https://drserenablake-omega.vercel.app/](https://drserenablake-omega.vercel.app/)
 
-First, run the development server:
+A fully responsive and professional therapist website built with **Next.js 14**, **Tailwind CSS**, and **React Components**, designed as an internship assignment. The site showcases services, contact options with reCAPTCHA, FAQs, and smooth scroll-based animations.
+
+---
+
+## 🔗 Table of Contents
+
+- [Live Demo](#live-demo)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Folder Structure](#folder-structure)
+- [Setup Instructions](#setup-instructions)
+- [Screenshots](#screenshots)
+- [License](#license)
+
+---
+
+## 🌐 Live Demo
+
+📍 **Website:** [https://drserenablake-omega.vercel.app/](https://drserenablake-omega.vercel.app/)
+
+---
+
+## ✅ Features
+
+- Elegant hero section with video background
+- Responsive design across all devices
+- Scroll-based reveal animations using custom `FadeInSection`
+- Service cards with optimized layout and transitions
+- Fully validated contact form with Google reCAPTCHA v2
+- FAQ accordion using Lucide Icons
+- Integrated Adobe Fonts / Custom Fonts support (optional)
+- Clean and semantic Tailwind utility classes
+- Hosted on Vercel for instant deployment
+
+---
+
+## 🚀 Tech Stack
+
+- **Framework:** [Next.js 14](https://nextjs.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Animation:** Custom scroll reveal with `useEffect`
+- **Icons:** [Lucide React](https://lucide.dev/)
+- **Fonts:** Supports Freight Display Pro / Sans Pro (manually included)
+- **Deployment:** [Vercel](https://vercel.com/)
+
+---
+
+## 🗂 Folder Structure
+
+📁 app/
+┣ 📁 components/ → Reusable sections: Hero, About, Services, Contact, FAQ
+┃ ┣ 📄 Hero.jsx
+┃ ┣ 📄 About.jsx
+┃ ┣ 📄 Services.jsx
+┃ ┣ 📄 Contact.jsx
+┃ ┣ 📄 FAQ.jsx
+┃ ┗ 📄 FadeInSection.jsx → Scroll-triggered reveal animation
+┣ 📄 layout.js → Root layout
+┣ 📄 page.js → Main landing page
+┣ 📁 public/
+┣ 📁 image/ → Images used across site
+┃ ┣ 📄 logo.png, bg.png
+┃ ┣ 📄 Service1.jpg, ...
+┣ 📄 bg.mp4 → Video background for hero
+┣ 📄 globals.css → Global Tailwind + font styles
+┣ 📄 tailwind.config.js
+┣ 📄 next.config.js
+┣ 📄 package.json
+
+---
+
+## 🛠 Setup Instructions
+
+### 1. Clone the Repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Kishan89/GrowMyTherapyAssignment.git
+cd GrowMyTherapyAssignment
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+npm install
+npm run dev
+App will run on http://localhost:3000

@@ -17,67 +17,80 @@ export default function ContactForm() {
   const [captchaVerified, setCaptchaVerified] = useState(false);
   const [errors, setErrors] = useState({});
 
+  // ------------------------------
+  // Validation
+  // ------------------------------
   const validate = () => {
     const newErrors = {};
-    if (!form.name) newErrors.name = "Name is required";
-    if (!form.phone || !/^\+91[6-9]\d{9}$/.test(form.phone.trim())) {
+
+    if (!form.name.trim()) newErrors.name = "Name is required";
+
+    if (!/^\+91[6-9]\d{9}$/.test(form.phone.trim())) {
       newErrors.phone =
         "Valid Indian phone number required (e.g., +919876543210)";
     }
 
-    if (!form.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
       newErrors.email = "Valid email is required";
-    if (!form.message) newErrors.message = "Message is required";
-    if (!form.time) newErrors.time = "Preferred time is required";
+    }
+
+    if (!form.message.trim()) newErrors.message = "Message is required";
+    if (!form.time.trim()) newErrors.time = "Preferred time is required";
     if (!form.agree) newErrors.agree = "Consent is required";
     if (!captchaVerified)
       newErrors.captcha = "Please verify you're not a robot";
+
     return newErrors;
   };
 
+  // ------------------------------
+  // Input Change Handler
+  // ------------------------------
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     const updatedValue = type === "checkbox" ? checked : value;
 
-    setForm((prev) => ({
-      ...prev,
-      [name]: updatedValue,
-    }));
+    setForm((prev) => ({ ...prev, [name]: updatedValue }));
 
-    setErrors((prevErrors) => {
-      const updatedErrors = { ...prevErrors };
+    // Real-time error clearing
+    setErrors((prev) => {
+      const newErr = { ...prev };
+
       switch (name) {
-        case "phone":
-          if (/^\+91[6-9]\d{9}$/.test(updatedValue.trim())) {
-            delete updatedErrors.phone;
-          }
-          break;
         case "name":
         case "message":
         case "time":
-          if (updatedValue.trim() !== "") delete updatedErrors[name];
+          if (updatedValue.trim()) delete newErr[name];
+          break;
+        case "phone":
+          if (/^\+91[6-9]\d{9}$/.test(updatedValue.trim())) delete newErr.phone;
           break;
         case "email":
-          if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(updatedValue)) {
-            delete updatedErrors.email;
-          }
+          if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(updatedValue.trim()))
+            delete newErr.email;
           break;
         case "agree":
-          if (updatedValue) delete updatedErrors.agree;
+          if (updatedValue) delete newErr.agree;
           break;
         default:
           break;
       }
-      return updatedErrors;
+
+      return newErr;
     });
   };
 
+  // ------------------------------
+  // Submit Handler
+  // ------------------------------
   const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = validate();
     setErrors(validationErrors);
+
     if (Object.keys(validationErrors).length === 0) {
       alert("Form submitted successfully");
+
       setForm({
         name: "",
         phone: "",
@@ -92,12 +105,12 @@ export default function ContactForm() {
 
   return (
     <section className="bg-[#f4f6f7] px-4 py-16">
-      {/* Contact Form */}
       <FadeInSection delay={0.1}>
         <form
           onSubmit={handleSubmit}
           className="bg-white border border-[#1d3c2f] rounded-lg shadow-md p-8 w-full max-w-2xl mx-auto"
         >
+          {/* Heading */}
           <h2 className="text-3xl font-lora font-bold text-[#1d3c2f] text-center mb-2">
             Get In Touch
           </h2>
@@ -105,6 +118,7 @@ export default function ContactForm() {
             Fill out the form and I’ll get back to you shortly.
           </p>
 
+          {/* Input Fields */}
           {[
             {
               label: "Name",
@@ -164,7 +178,7 @@ export default function ContactForm() {
             )}
           </div>
 
-          {/* Preferred Time */}
+          {/* Preferred Contact Time */}
           <div className="mb-6">
             <label className="block text-[#1d3c2f] mb-1">
               Preferred Contact Time
@@ -183,7 +197,7 @@ export default function ContactForm() {
             )}
           </div>
 
-          {/* Agreement */}
+          {/* Agreement Checkbox */}
           <div className="mb-6 flex items-start gap-3">
             <input
               type="checkbox"
@@ -220,6 +234,7 @@ export default function ContactForm() {
             )}
           </div>
 
+          {/* Submit Button */}
           <button
             type="submit"
             className="bg-[#1d3c2f] text-white px-6 py-3 rounded-md w-full hover:bg-[#173024] transition"
@@ -233,9 +248,9 @@ export default function ContactForm() {
         </form>
       </FadeInSection>
 
+      {/* Footer */}
       <div className="mt-10 pt-4 border-t-[2px] border-[#ddd]"></div>
 
-      {/* Footer */}
       <FadeInSection delay={0.2}>
         <footer className="mt-12 bg-[#f4f6f7] text-center text-[#1e1e1e] font-lora pt-12">
           <div className="max-w-3xl mx-auto space-y-5 text-[15px] sm:text-[16px] leading-relaxed">

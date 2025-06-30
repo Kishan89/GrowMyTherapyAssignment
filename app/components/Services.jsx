@@ -26,7 +26,7 @@ const services = [
 export default function Services() {
   return (
     <section className="bg-[#f6f3eb]" id="services">
-      {/* Hero Text */}
+      {/* Intro Text */}
       <FadeInSection delay={0.1}>
         <div className="max-w-6xl mx-auto text-center px-4 sm:px-6 md:px-8 pt-12">
           <h1 className="text-[36px] leading-snug font-lora font-light text-[#383838] mb-10">
@@ -88,27 +88,27 @@ export default function Services() {
       </FadeInSection>
 
       {/* Rates and Insurance */}
-      <FadeInSection delay={0.4}>
+      <FadeInSection delay={0.7}>
         <div className="bg-[#89a8a9] text-[#1a1a1a] font-lora text-center px-4 sm:px-6 py-20 mt-32">
-          <FadeInSection delay={0.45}>
+          <FadeInSection delay={0.75}>
             <h2 className="text-[36px] font-lora font-light mb-10">
               Rates and Insurance
             </h2>
           </FadeInSection>
           <div className="text-[17px] font-light leading-relaxed space-y-6 max-w-3xl mx-auto px-2">
-            <FadeInSection delay={0.5}>
+            <FadeInSection delay={0.8}>
               <p>$200 / individual session</p>
             </FadeInSection>
-            <FadeInSection delay={0.55}>
+            <FadeInSection delay={0.85}>
               <p>$240 / couples session</p>
             </FadeInSection>
-            <FadeInSection delay={0.6}>
+            <FadeInSection delay={0.9}>
               <p>
                 I accept both private pay and insurance. I am in-network with
                 BCBS and Aetna.
               </p>
             </FadeInSection>
-            <FadeInSection delay={0.65}>
+            <FadeInSection delay={0.95}>
               <p>
                 For out-of-network plans, I’ve partnered with Mentaya using{" "}
                 <a
@@ -128,19 +128,19 @@ export default function Services() {
       </FadeInSection>
 
       {/* Office Hours */}
-      <FadeInSection delay={0.7}>
+      <FadeInSection delay={1.0}>
         <div className="bg-white text-center py-16 px-4 sm:px-6">
-          <FadeInSection delay={0.75}>
+          <FadeInSection delay={1.05}>
             <h2 className="text-[28px] font-lora font-light text-[#383838] mb-6">
               Office Hours
             </h2>
           </FadeInSection>
-          <FadeInSection delay={0.8}>
+          <FadeInSection delay={1.1}>
             <p className="text-[15.5px] text-[#6b6b6b] font-light mb-2">
               In-person: Tue & Thu, 10 AM–6 PM
             </p>
           </FadeInSection>
-          <FadeInSection delay={0.85}>
+          <FadeInSection delay={1.15}>
             <p className="text-[15.5px] text-[#6b6b6b] font-light">
               Virtual via Zoom: Mon, Wed & Fri, 1 PM–5 PM
             </p>
@@ -149,16 +149,13 @@ export default function Services() {
       </FadeInSection>
 
       {/* Quote Section */}
-      <FadeInSection delay={0.9}>
+      <FadeInSection delay={1.2}>
         <div
           className="relative w-full bg-cover bg-center min-h-[520px] px-4 sm:px-6 flex items-center justify-center text-center"
           style={{ backgroundImage: `url("/image/bg.png")` }}
         >
-          {/* Background overlay */}
           <div className="absolute inset-0 bg-white opacity-30" />
-
-          {/* Quote Content */}
-          <FadeInSection delay={1.0}>
+          <FadeInSection delay={1.25}>
             <div className="relative z-10 max-w-4xl px-2 text-center">
               <p className="text-[22px] md:text-[28px] leading-relaxed font-lora font-light text-[#444]">
                 “I have come to believe that caring for myself is not
@@ -166,7 +163,7 @@ export default function Services() {
                 <br />
                 Caring for myself is an act of survival.”
               </p>
-              <FadeInSection delay={1.1}>
+              <FadeInSection delay={1.3}>
                 <p className="text-[16px] text-black mt-6 font-light">
                   — Audre Lorde
                 </p>

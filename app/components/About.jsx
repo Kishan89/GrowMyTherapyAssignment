@@ -1,8 +1,10 @@
-"use client";
+import Image from "next/image";
+import dynamic from "next/dynamic";
+const FadeInSection = dynamic(() => import("../components/FadeInSection"), {
+  ssr: false,
+});
 
-import FadeInSection from "./FadeInSection";
-
-export default function About() {
+export default function AboutPage() {
   return (
     <>
       <section className="bg-white pt-32 pb-20 pl-8 pr-4 sm:pl-12 sm:pr-6 md:pl-20 md:pr-10 lg:pl-36 lg:pr-20 xl:pl-52 xl:pr-32 2xl:pl-64 2xl:pr-44 font-lora text-gray-500">
@@ -44,12 +46,15 @@ export default function About() {
             </FadeInSection>
           </div>
 
-          {/* Right - Image (no animation applied here) */}
+          {/* Right - Image */}
           <div className="md:w-1/2 w-full flex justify-center md:justify-end">
-            <img
+            <Image
               src="/image/sarena.jpg"
               alt="Dr. Serena Blake"
+              width={420}
+              height={560}
               className="w-[85%] max-w-[320px] sm:max-w-[360px] md:max-w-[420px] aspect-[3/4] object-cover xl:h-[640px] xl:aspect-auto"
+              priority
             />
           </div>
         </div>
