@@ -1,6 +1,6 @@
 import Image from "next/image";
 import dynamic from "next/dynamic";
-const FadeInSection = dynamic(() => import("../components/FadeInSection"), {
+const FadeInSection = dynamic(() => import("../common/FadeInSection"), {
   ssr: false,
 });
 
@@ -49,7 +49,7 @@ export default function AboutPage() {
           {/* Right - Image */}
           <div className="md:w-1/2 w-full flex justify-center md:justify-end">
             <Image
-              src="/image/sarena.jpg"
+              src="/images/sarena.jpg"
               alt="Dr. Serena Blake"
               width={420}
               height={560}

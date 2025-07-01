@@ -1,6 +1,6 @@
 "use client";
 
-import FadeInSection from "./FadeInSection";
+import FadeInSection from "../common/FadeInSection";
 
 export default function Hero() {
   return (
@@ -10,7 +10,7 @@ export default function Hero() {
         <header className="w-full max-w-[1400px] mx-auto pt-6 pb-4">
           <div>
             <img
-              src="/image/logo.png"
+              src="/images/logo.png"
               alt="Logo"
               className="h-[60px] sm:h-[70px] md:h-[80px] object-contain ml-1 mt-6 mb-6"
             />
@@ -26,7 +26,7 @@ export default function Hero() {
             muted
             playsInline
           >
-            <source src="/bg.mp4" type="video/mp4" />
+            <source src="/videos/bg.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
 

@@ -51,25 +51,47 @@ A fully responsive and professional therapist website built with **Next.js 14**,
 
 ## 🗂 Folder Structure
 
-📁 app/
-┣ 📁 components/ → Reusable sections: Hero, About, Services, Contact, FAQ
-┃ ┣ 📄 Hero.jsx
-┃ ┣ 📄 About.jsx
-┃ ┣ 📄 Services.jsx
-┃ ┣ 📄 Contact.jsx
-┃ ┣ 📄 FAQ.jsx
-┃ ┗ 📄 FadeInSection.jsx → Scroll-triggered reveal animation
-┣ 📄 layout.js → Root layout
-┣ 📄 page.js → Main landing page
-┣ 📁 public/
-┣ 📁 image/ → Images used across site
-┃ ┣ 📄 logo.png, bg.png
-┃ ┣ 📄 Service1.jpg, ...
-┣ 📄 bg.mp4 → Video background for hero
-┣ 📄 globals.css → Global Tailwind + font styles
-┣ 📄 tailwind.config.js
-┣ 📄 next.config.js
-┣ 📄 package.json
+app
+├── components
+│ ├── about
+│ │ └── About.jsx
+│ ├── common
+│ │ └── FadeInSection.jsx
+│ ├── contact
+│ │ ├── Captcha.jsx
+│ │ ├── ContactFooter.jsx
+│ │ └── ContactForm.jsx
+│ ├── faq
+│ │ └── FAQ.jsx
+│ ├── herosection
+│ │ └── Hero.jsx
+│ └── services
+│ ├── OfficeHours.jsx
+│ ├── QuoteSection.jsx
+│ ├── RatesAndInsurance.jsx
+│ ├── ServiceCard.jsx
+│ └── Services.jsx
+├── layout.js
+├── page.js
+├── globals.css
+
+public
+├── images
+├── videos
+├── next.svg
+└── vercel.svg
+
+node_modules
+
+Other files:
+├── .gitignore
+├── jsconfig.json
+├── next.config.js
+├── package.json
+├── package-lock.json
+├── postcss.config.js
+├── tailwind.config.js
+└── README.md
 
 ---
 

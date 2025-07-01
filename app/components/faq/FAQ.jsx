@@ -2,9 +2,8 @@
 
 import { useState } from "react";
 import { ChevronRight } from "lucide-react";
-import FadeInSection from "./FadeInSection";
+import FadeInSection from "../common/FadeInSection";
 
-// FAQs data
 const faqs = [
   {
     question: "Do you accept insurance?",
