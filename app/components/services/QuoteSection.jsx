@@ -4,7 +4,7 @@ export default function QuoteSection() {
   return (
     <div
       className="relative w-full bg-cover bg-center min-h-[520px] px-4 sm:px-6 flex items-center justify-center text-center"
-      style={{ backgroundImage: `url("/images/bg.png")` }}
+      style={{ backgroundImage: `url("/images/bg.jpg")` }}
     >
       {/* Overlay */}
       <div className="absolute inset-0 bg-white opacity-30" />
