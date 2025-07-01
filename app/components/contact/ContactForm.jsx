@@ -21,22 +21,38 @@ export default function ContactForm() {
   const validate = () => {
     const newErrors = {};
 
-    if (!form.name.trim()) newErrors.name = "Name is required";
+    if (!form.name.trim()) {
+      newErrors.name = "Name is required";
+    }
 
     if (!/^\+91[6-9]\d{9}$/.test(form.phone.trim())) {
       newErrors.phone =
         "Valid Indian phone number required (e.g., +919876543210)";
     }
 
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
+    if (
+      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+        form.email.trim()
+      )
+    ) {
       newErrors.email = "Valid email is required";
     }
 
-    if (!form.message.trim()) newErrors.message = "Message is required";
-    if (!form.time.trim()) newErrors.time = "Preferred time is required";
-    if (!form.agree) newErrors.agree = "Consent is required";
-    if (!captchaVerified)
+    if (!form.message.trim()) {
+      newErrors.message = "Message is required";
+    }
+
+    if (!form.time.trim()) {
+      newErrors.time = "Preferred time is required";
+    }
+
+    if (!form.agree) {
+      newErrors.agree = "Consent is required";
+    }
+
+    if (!captchaVerified) {
       newErrors.captcha = "Please verify you're not a robot";
+    }
 
     return newErrors;
   };
@@ -44,7 +60,42 @@ export default function ContactForm() {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     const updatedValue = type === "checkbox" ? checked : value;
+
     setForm((prev) => ({ ...prev, [name]: updatedValue }));
+
+    // Live validation
+    setErrors((prevErrors) => {
+      const newErrors = { ...prevErrors };
+
+      if (name === "name" && value.trim()) {
+        delete newErrors.name;
+      }
+
+      if (name === "phone" && /^\+91[6-9]\d{9}$/.test(value.trim())) {
+        delete newErrors.phone;
+      }
+
+      if (
+        name === "email" &&
+        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value.trim())
+      ) {
+        delete newErrors.email;
+      }
+
+      if (name === "message" && value.trim()) {
+        delete newErrors.message;
+      }
+
+      if (name === "time" && value.trim()) {
+        delete newErrors.time;
+      }
+
+      if (name === "agree" && checked) {
+        delete newErrors.agree;
+      }
+
+      return newErrors;
+    });
   };
 
   const handleSubmit = (e) => {
