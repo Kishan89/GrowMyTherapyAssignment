@@ -8,12 +8,10 @@ A modern, responsive therapy website built with Next.js, React, and Tailwind CSS
 - Node.js (v16.0 or higher)
 - npm or yarn
 
-### Installation
+### Local Setup
 
-1. **Clone and install**
+1. **Install dependencies**
    ```bash
-   git clone <repository-url>
-   cd GrowMyTherapy
    npm install
    ```
 
