@@ -4,6 +4,8 @@ import { useState } from "react";
 import Captcha from "./Captcha";
 import ContactFooter from "./ContactFooter";
 import FadeInSection from "../common/FadeInSection";
+import LoadingSpinner from "../common/LoadingSpinner";
+import SuccessMessage from "../common/SuccessMessage";
 
 export default function ContactForm() {
   const [form, setForm] = useState({
@@ -17,6 +19,8 @@ export default function ContactForm() {
 
   const [captchaVerified, setCaptchaVerified] = useState(false);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const validate = () => {
     const newErrors = {};
@@ -63,7 +67,6 @@ export default function ContactForm() {
 
     setForm((prev) => ({ ...prev, [name]: updatedValue }));
 
-    // Live validation
     setErrors((prevErrors) => {
       const newErrors = { ...prevErrors };
 
@@ -98,130 +101,165 @@ export default function ContactForm() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
-      alert("Form submitted successfully");
+      setLoading(true);
 
-      setForm({
-        name: "",
-        phone: "",
-        email: "",
-        message: "",
-        time: "",
-        agree: false,
-      });
-      setCaptchaVerified(false);
+      try {
+        const formData = new FormData();
+        formData.append('_subject', 'New Contact - Dr. Serena Blake');
+        formData.append('name', form.name);
+        formData.append('email', form.email);
+        formData.append('phone', form.phone);
+        formData.append('time', form.time);
+        formData.append('message', form.message);
+
+        await fetch('https://formsubmit.co/shahmanan2116@gmail.com', {
+          method: 'POST',
+          body: formData
+        });
+        
+        setShowSuccess(true);
+        setForm({
+          name: "",
+          phone: "",
+          email: "",
+          message: "",
+          time: "",
+          agree: false,
+        });
+        setCaptchaVerified(false);
+      } catch (error) {
+        console.error("Form submission error:", error);
+        alert("An error occurred. Please try again.");
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
   return (
-    <section className="bg-[#f4f6f7] px-4 py-16">
-      <FadeInSection>
-        <form
-          onSubmit={handleSubmit}
-          className="bg-white border border-[#1d3c2f] rounded-lg shadow-md p-8 w-full max-w-2xl mx-auto"
-        >
-          <h2 className="text-3xl font-lora font-bold text-[#1d3c2f] text-center mb-2">
-            Get In Touch
-          </h2>
-          <p className="text-center text-[#1d3c2f] text-[17px] leading-relaxed mb-8">
-            Fill out the form and I’ll get back to you shortly.
-          </p>
+    <>
+      {showSuccess && (
+        <SuccessMessage
+          message="Thank you! Your message has been sent to shahmanan2116@gmail.com. We'll get back to you shortly."
+          onClose={() => setShowSuccess(false)}
+        />
+      )}
 
-          {["name", "email", "phone", "message", "time"].map((field) => (
-            <div key={field} className="mb-6">
-              <label className="block text-[#1d3c2f] mb-1 capitalize">
-                {field === "time" ? "Preferred Contact Time" : field}
-              </label>
-
-              {field === "message" ? (
-                <textarea
-                  name="message"
-                  value={form.message}
-                  onChange={handleChange}
-                  placeholder="How can I help you?"
-                  className={`w-full border px-4 py-2 rounded-md h-24 resize-none outline-none ${
-                    errors.message ? "border-red-500" : "border-[#1d3c2f]"
-                  }`}
-                />
-              ) : (
-                <input
-                  type={field === "email" ? "email" : "text"}
-                  name={field}
-                  value={form[field]}
-                  onChange={handleChange}
-                  placeholder={
-                    field === "phone"
-                      ? "+919876543210"
-                      : field === "email"
-                      ? "you@example.com"
-                      : ""
-                  }
-                  className={`w-full border px-4 py-2 rounded-md outline-none ${
-                    errors[field] ? "border-red-500" : "border-[#1d3c2f]"
-                  }`}
-                />
-              )}
-
-              {errors[field] && (
-                <p className="text-red-500 text-sm mt-1">{errors[field]}</p>
-              )}
-            </div>
-          ))}
-
-          {/* Checkbox */}
-          <div className="mb-6 flex items-start gap-3">
-            <input
-              type="checkbox"
-              name="agree"
-              checked={form.agree}
-              onChange={handleChange}
-              className="mt-1"
-            />
-            <label className="text-[#1d3c2f] text-sm">
-              I agree to be contacted
-            </label>
-          </div>
-          {errors.agree && (
-            <p className="text-red-500 text-sm mb-4">{errors.agree}</p>
-          )}
-
-          {/* Captcha */}
-          <Captcha
-            onVerify={() => {
-              setCaptchaVerified(true);
-              setErrors((prev) => {
-                const updated = { ...prev };
-                delete updated.captcha;
-                return updated;
-              });
-            }}
-            error={errors.captcha}
-          />
-
-          {/* Submit */}
-          <button
-            type="submit"
-            className="bg-[#1d3c2f] text-white px-6 py-3 rounded-md w-full hover:bg-[#173024] transition"
+      <section className="bg-[#f4f6f7] px-4 py-16">
+        <FadeInSection>
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white border border-[#1d3c2f] rounded-lg shadow-md p-8 w-full max-w-2xl mx-auto"
           >
-            Submit
-          </button>
+            <h2 className="text-3xl font-lora font-bold text-[#1d3c2f] text-center mb-2">
+              Get In Touch
+            </h2>
+            <p className="text-center text-[#1d3c2f] text-[17px] leading-relaxed mb-8">
+              Fill out the form and I'll get back to you shortly.
+            </p>
 
-          <p className="text-[13px] text-center text-[#333] mt-4">
-            © By clicking submit you consent to receive texts and emails.
-          </p>
-        </form>
-      </FadeInSection>
+            {["name", "email", "phone", "message", "time"].map((field) => (
+              <div key={field} className="mb-6">
+                <label className="block text-[#1d3c2f] mb-1 capitalize">
+                  {field === "time" ? "Preferred Contact Time" : field}
+                </label>
 
-      <div className="mt-10 pt-4 border-t-[2px] border-[#ddd]"></div>
+                {field === "message" ? (
+                  <textarea
+                    name="message"
+                    value={form.message}
+                    onChange={handleChange}
+                    placeholder="How can I help you?"
+                    className={`w-full border px-4 py-2 rounded-md h-24 resize-none outline-none ${
+                      errors.message ? "border-red-500" : "border-[#1d3c2f]"
+                    }`}
+                  />
+                ) : (
+                  <input
+                    type={field === "email" ? "email" : "text"}
+                    name={field}
+                    value={form[field]}
+                    onChange={handleChange}
+                    placeholder={
+                      field === "phone"
+                        ? "+919876543210"
+                        : field === "email"
+                        ? "you@example.com"
+                        : ""
+                    }
+                    className={`w-full border px-4 py-2 rounded-md outline-none ${
+                      errors[field] ? "border-red-500" : "border-[#1d3c2f]"
+                    }`}
+                  />
+                )}
 
-      <FadeInSection>
-        <ContactFooter />
-      </FadeInSection>
-    </section>
+                {errors[field] && (
+                  <p className="text-red-500 text-sm mt-1">{errors[field]}</p>
+                )}
+              </div>
+            ))}
+
+            <div className="mb-6 flex items-start gap-3">
+              <input
+                type="checkbox"
+                name="agree"
+                checked={form.agree}
+                onChange={handleChange}
+                className="mt-1"
+              />
+              <label className="text-[#1d3c2f] text-sm">
+                I agree to be contacted
+              </label>
+            </div>
+            {errors.agree && (
+              <p className="text-red-500 text-sm mb-4">{errors.agree}</p>
+            )}
+
+            <Captcha
+              onVerify={() => {
+                setCaptchaVerified(true);
+                setErrors((prev) => {
+                  const updated = { ...prev };
+                  delete updated.captcha;
+                  return updated;
+                });
+              }}
+              error={errors.captcha}
+            />
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="bg-[#1d3c2f] text-white px-6 py-3 rounded-md w-full hover:bg-[#173024] transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+            >
+              {loading ? (
+                <>
+                  <LoadingSpinner />
+                  <span>Sending...</span>
+                </>
+              ) : (
+                "Submit"
+              )}
+            </button>
+
+            <p className="text-[13px] text-center text-[#333] mt-4">
+              © By clicking submit you consent to receive texts and emails.
+            </p>
+          </form>
+        </FadeInSection>
+
+        <div className="mt-10 pt-4 border-t-[2px] border-[#ddd]"></div>
+
+        <FadeInSection>
+          <ContactFooter />
+        </FadeInSection>
+      </section>
+    </>
   );
 }

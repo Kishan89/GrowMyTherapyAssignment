@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import FadeInSection from "../common/FadeInSection";
 
 export default function Hero() {
@@ -44,8 +45,8 @@ export default function Hero() {
             </p>
 
             {/* CTA Button */}
-            <a
-              href="#contact"
+            <Link
+              href="/book-consultation"
               className="bg-[#5a7f8a] text-white text-xs sm:text-sm md:text-base font-semibold inline-flex items-center justify-center transition duration-300 hover:opacity-75"
               style={{
                 width: "260px",
@@ -57,7 +58,7 @@ export default function Hero() {
               }}
             >
               BOOK A FREE CONSULT
-            </a>
+            </Link>
           </div>
         </div>
       </section>

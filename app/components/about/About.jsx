@@ -20,29 +20,50 @@ export default function AboutPage() {
             <FadeInSection delay={0.3}>
               <p className="text-[16px] sm:text-[17px] leading-[1.8rem] mb-5 sm:mb-6">
                 Dr. Serena Blake is a licensed clinical psychologist (PsyD)
-                based in Los Angeles, CA, with eight years of experience and
+                based in Mumbai, India, with eight years of experience and
                 over 500 client sessions. She blends evidence-based
-                approaches—like cognitive-behavioral therapy and
-                mindfulness—with compassionate, personalized care.
+                approaches—like cognitive-behavioral therapy, EMDR, and
+                mindfulness—with compassionate, culturally-sensitive care.
               </p>
             </FadeInSection>
 
             <FadeInSection delay={0.4}>
               <p className="text-[16px] sm:text-[17px] leading-[1.8rem] mb-5 sm:mb-6">
                 Dr. Blake specializes in helping individuals overcome anxiety,
-                strengthen relationships, and heal from trauma. Her approach
-                centers on building a safe, supportive space where clients can
-                explore their challenges and discover lasting growth.
+                strengthen relationships, and heal from trauma. She offers therapy
+                in English, Hindi, and Marathi, ensuring clients can express
+                themselves in their preferred language. Her approach centers on
+                building a safe, supportive space where clients can explore their
+                challenges and discover lasting growth.
               </p>
             </FadeInSection>
 
             <FadeInSection delay={0.5}>
-              <p className="text-[16px] sm:text-[17px] leading-[1.8rem]">
-                Whether you meet her in-person at her Maplewood Drive office or
-                connect virtually via Zoom, Dr. Blake is dedicated to providing
+              <p className="text-[16px] sm:text-[17px] leading-[1.8rem] mb-5 sm:mb-6">
+                Whether you meet her in-person at her Bandra office or
+                connect virtually via secure video calls, Dr. Blake is dedicated to providing
                 thoughtful, tailored guidance to help you thrive—mentally,
                 emotionally, and relationally.
               </p>
+            </FadeInSection>
+
+            <FadeInSection delay={0.6}>
+              <div className="bg-[#f6f3eb] rounded-lg p-6 mt-6">
+                <h3 className="text-lg font-semibold text-[#1d3c2f] mb-3">
+                  Languages Spoken
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  <span className="bg-[#89a8a9] text-white px-3 py-1 rounded-full text-sm">
+                    English
+                  </span>
+                  <span className="bg-[#89a8a9] text-white px-3 py-1 rounded-full text-sm">
+                    Hindi
+                  </span>
+                  <span className="bg-[#89a8a9] text-white px-3 py-1 rounded-full text-sm">
+                    Marathi
+                  </span>
+                </div>
+              </div>
             </FadeInSection>
           </div>
 
