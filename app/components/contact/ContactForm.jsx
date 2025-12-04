@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Captcha from "./Captcha";
+
 import ContactFooter from "./ContactFooter";
 import FadeInSection from "../common/FadeInSection";
 import LoadingSpinner from "../common/LoadingSpinner";
@@ -17,7 +17,7 @@ export default function ContactForm() {
     agree: false,
   });
 
-  const [captchaVerified, setCaptchaVerified] = useState(false);
+
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -54,9 +54,7 @@ export default function ContactForm() {
       newErrors.agree = "Consent is required";
     }
 
-    if (!captchaVerified) {
-      newErrors.captcha = "Please verify you're not a robot";
-    }
+
 
     return newErrors;
   };
@@ -132,7 +130,7 @@ export default function ContactForm() {
           time: "",
           agree: false,
         });
-        setCaptchaVerified(false);
+
       } catch (error) {
         console.error("Form submission error:", error);
         alert("An error occurred. Please try again.");
@@ -221,17 +219,7 @@ export default function ContactForm() {
               <p className="text-red-500 text-sm mb-4">{errors.agree}</p>
             )}
 
-            <Captcha
-              onVerify={() => {
-                setCaptchaVerified(true);
-                setErrors((prev) => {
-                  const updated = { ...prev };
-                  delete updated.captcha;
-                  return updated;
-                });
-              }}
-              error={errors.captcha}
-            />
+
 
             <button
               type="submit"

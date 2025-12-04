@@ -106,6 +106,7 @@ export default function BookingForm() {
       setLoading(true);
 
       try {
+        // Direct FormSubmit.co submission
         const formData = new FormData();
         formData.append('_subject', 'New Booking - Dr. Serena Blake');
         formData.append('name', form.name);
